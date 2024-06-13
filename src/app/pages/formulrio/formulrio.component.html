@@ -1,0 +1,31 @@
+<div >
+    <div class="card flex justify-content-center">
+        <p-card header="Formulario de registro">
+           
+            <form [formGroup]="formRegistro" >
+
+                <div class="flex flex-column gap-2">
+                    <label>Fecha</label>
+                    <!-- <label> {{ fechaActual() }} </label> -->
+                    <input pInputText type="text" [value]="fechaActual()"  disabled>
+                </div>
+
+                <div class="flex flex-column gap-2" *ngFor="let item of preguntas()">
+                    <label [for]="item.name | lowercase">{{ item.pregunta }}</label>
+                    <input 
+                        pInputText 
+                        [id]="item.name | lowercase"
+                        [type]="item.type"
+                        [placeholder]="item.placeholder"
+                         />                    
+                </div>
+
+                <div class="contenedor_boton">
+                    <p-button (click)="irCoordenadas(formRegistro.value)" [style]="{'width':'95%'}" label="Siguiente" [raised]="true" />
+                </div>
+
+            </form>
+
+        </p-card>
+    </div>
+</div>
