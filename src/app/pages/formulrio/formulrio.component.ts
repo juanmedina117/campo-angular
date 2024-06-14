@@ -2,6 +2,9 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { PreguntasInterfaces } from './interfaces/preguntas.interface';
 import { format } from "@formkit/tempo"
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ConsumoPreguntasService } from '../services/conumo-preguntas.service';
+import { StorageService } from '../services/storage.service';
 
 
 @Component({
@@ -10,87 +13,31 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './formulrio.component.scss'
 })
 export class FormulrioComponent implements OnInit {
+  
+  public router = inject(Router);
+  public preguntasService = inject(ConsumoPreguntasService);
+  public serviceStorage = inject(StorageService);
 
   public fechaActual = signal<string>('');
   public fb = inject(FormBuilder);
   public formRegistro!:FormGroup;
-  
 
-  public preguntas = signal<PreguntasInterfaces[]>([
-    {
-      pregunta: 'Nombre',
-      placeholder: 'Ingresa el nombre',
-      type: 'text',
-      name: 'nombre'
-    },
-    {
-      pregunta: 'Cultivo',
-      placeholder: 'Ingresa el cultivo',
-      type: 'text',
-      name: 'cultivo'
-    },
-    {
-      pregunta: 'Alcaldía',
-      placeholder: 'Ingresa la alcaldía',
-      type: 'text',
-      name: 'alcaldia'
-    },
-    {
-      pregunta: 'Pueblo',
-      placeholder: 'Ingresa el pueblo',
-      type: 'text',
-      name: 'pueblo'
-    },
-    {
-      pregunta: 'Paraje',
-      placeholder: 'Ingresa el paraje',
-      type: 'text',
-      name: 'paraje'
-    },
-    {
-      pregunta: 'Superficie a Aspejar (m2)',
-      placeholder: 'Ingresa la superficie',
-      type: 'number',
-      name: 'superficie'
-    },
-    {
-      pregunta: 'N° de aplicación',
-      placeholder: 'Ingresa la aplicación',
-      type: 'number',
-      name: 'numeroApliacion'
-    },
-    {
-      pregunta: 'Folio',
-      placeholder: 'Ingresa el folio',
-      type: 'text',
-      name: 'folio'
-    },
-    {
-      pregunta: 'Mejorador de suelo',
-      placeholder: 'Ingresa el mejorador',
-      type: 'text',
-      name: 'suelo'
-    },
-    {
-      pregunta: 'Firma',
-      placeholder: '',
-      type: '',
-      name: 'firma'
-    }
-
-  ]);
+  public preguntas = signal<PreguntasInterfaces[]>([]);
 
   ngOnInit(): void {
     let fecha = new Date();
     this.fechaActual.update( () => format(fecha,'medium'));
+    this.traerPreguntas();
     this.createForm();
+
+
   }
 
   public createForm(){
 
     this.formRegistro = this.fb.group({
       
-      fecha: [this.fechaActual,[Validators.required]],
+      fecha: [this.fechaActual(),[Validators.required]],
       nombre: ['', [Validators.required]],
       cultivo: ['', [Validators.required]],
       alcaldia: ['', [Validators.required]],
@@ -109,8 +56,28 @@ export class FormulrioComponent implements OnInit {
   public irCoordenadas(form:FormGroup){
     console.log('Siguiente...');
     console.log(form);
-    
-    
+
+    this.serviceStorage.setStorage('formulario',JSON.stringify(form.value))
+
+    this.router.navigateByUrl('registro/puntos');
+  }
+
+  public traerPreguntas(){
+    this.preguntasService.traerPreguntas()
+        .subscribe({
+          next: (preguntas) => {
+
+            if(!preguntas) throw 'No se obtuvieron las preguntas';
+
+            this.preguntas.set(preguntas);
+
+          },
+          error: (error) => {
+            console.log(error);
+            
+          }
+            
+        });
   }
 
 }

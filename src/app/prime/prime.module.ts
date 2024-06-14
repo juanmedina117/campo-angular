@@ -7,6 +7,7 @@ import { StepsModule } from 'primeng/steps';
 import { ToastModule } from 'primeng/toast';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [],
@@ -17,7 +18,8 @@ import { ButtonModule } from 'primeng/button';
     StepsModule,
     ToastModule,
     FloatLabelModule,
-    ButtonModule
+    ButtonModule,
+    PanelModule
   ],
   exports:[
     InputTextModule,
@@ -25,7 +27,8 @@ import { ButtonModule } from 'primeng/button';
     StepsModule,
     ToastModule,
     FloatLabelModule,
-    ButtonModule
+    ButtonModule,
+    PanelModule
     
   ]
 })

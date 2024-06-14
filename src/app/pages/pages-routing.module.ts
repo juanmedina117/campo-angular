@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistroComponent } from './registro/registro.component';
 import { FormulrioComponent } from './formulrio/formulrio.component';
+import { PuntosComponent } from './puntos/puntos.component';
+import { FotoComponent } from './foto/foto.component';
 
 const routes: Routes = [
   {
@@ -14,11 +16,11 @@ const routes: Routes = [
       },
       {
         path:'puntos',
-        component: FormulrioComponent
+        component: PuntosComponent
       },
       {
         path:'foto',
-        component: FormulrioComponent
+        component: FotoComponent
       },
       {
         path:'',

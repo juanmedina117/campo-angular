@@ -1,1 +1,33 @@
-<p>puntos works!</p>
+<div class="container">
+
+    <p-panel header="Datos del agricultor">
+        
+        <div class="div_inputs">
+            <input pInputText type="text" disabled [value]="dataFormulario().nombre" >
+        </div>
+
+        <div class="div_inputs">
+            <input pInputText type="text" disabled [value]="dataFormulario().cultivo" >
+        </div>
+
+    </p-panel>
+
+    <div class="div_mapa" id="map">
+
+    </div>
+
+    <div class="contenedor_botones">
+
+        <p-button label="Capturar punto" severity="primary" (click)="capturarPunto()"></p-button>
+        
+        <p-button label="Teminar captura" severity="danger" (click)="cerrarPunto()"></p-button>
+    </div>
+
+    <div>
+        <span>COORDENADAS</span>
+        <ul>
+          <li *ngFor="let item of coordendasArray">{{ item }} </li>
+        </ul>
+      </div>
+
+</div>

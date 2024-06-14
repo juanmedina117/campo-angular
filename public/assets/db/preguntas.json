@@ -1,0 +1,62 @@
+[
+    {
+        "pregunta": "Nombre",
+        "placeholder": "Ingresa el nombre",
+        "type": "text",
+        "name": "nombre"
+      },
+      {
+        "pregunta": "Cultivo",
+        "placeholder": "Ingresa el cultivo",
+        "type": "text",
+        "name": "cultivo"
+      },
+      {
+        "pregunta": "Alcaldía",
+        "placeholder": "Ingresa la alcaldía",
+        "type": "text",
+        "name": "alcaldia"
+      },
+      {
+        "pregunta": "Pueblo",
+        "placeholder": "Ingresa el pueblo",
+        "type": "text",
+        "name": "pueblo"
+      },
+      {
+        "pregunta": "Paraje",
+        "placeholder": "Ingresa el paraje",
+        "type": "text",
+        "name": "paraje"
+      },
+      {
+        "pregunta": "Superficie a Aspejar (m2)",
+        "placeholder": "Ingresa la superficie",
+        "type": "number",
+        "name": "superficie"
+      },
+      {
+        "pregunta": "N° de aplicación",
+        "placeholder": "Ingresa la aplicación",
+        "type": "number",
+        "name": "numeroApliacion"
+      },
+      {
+        "pregunta": "Folio",
+        "placeholder": "Ingresa el folio",
+        "type": "text",
+        "name": "folio"
+      },
+      {
+        "pregunta": "Mejorador de suelo",
+        "placeholder": "Ingresa el mejorador",
+        "type": "text",
+        "name": "suelo"
+      },
+      {
+        "pregunta": "Firma",
+        "placeholder": "",
+        "type": "",
+        "name": "firma"
+      }
+]
